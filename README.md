@@ -1,4 +1,4 @@
-# طبیعیات — University Physics (Urdu)
+# University Physics (Urdu)
 
 Urdu translation of selected chapters from **Halliday / Resnick / Walker**, course **PHYS-101**.
 This repo is **one book only**.
