@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10. گردش</title>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans:wght@400;700&display=swap">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root { --fg:#1a1a1a; --sec:#1e5a8c; --rule:#cd9623; --bg:#fff; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Noto Nastaliq Urdu", serif;
+    font-size: 1.15rem; line-height: 2.0;
+    color: var(--fg); background: var(--bg);
+    max-width: 42rem; margin: 0 auto; padding: 1.2rem 1rem 4rem;
+  }
+  .chapter-open {
+    text-align: center;
+    margin: 1.5rem 0 2.4rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .chapter-open .chap-label {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--sec);
+  }
+  .chapter-open .chap-label .chap-num {
+    font-family: "Noto Sans", sans-serif;
+  }
+  .chapter-open .chapter-title {
+    font-size: 2rem; margin: .55rem 0 0;
+    font-weight: 700; color: var(--sec); line-height: 1.5;
+  }
+  main { counter-reset: sec; }
+  main h1 {
+    color: var(--sec); line-height: 1.6; font-weight: 700;
+    font-size: 1.35rem; border-bottom: 2px solid var(--rule);
+    padding-bottom: .3rem; margin-top: 2rem;
+    counter-increment: sec;
+  }
+  main h1::before {
+    content: "10." counter(sec) "\2009";
+    font-family: "Noto Sans", sans-serif;
+    margin-left: .35em;
+  }
+  main h1.unnumbered { counter-increment: none; border-bottom-color: #ddd; }
+  main h1.unnumbered::before { content: none; }
+  h2 { color: var(--sec); font-size: 1.15rem; margin-top: 1.6rem;
+       line-height: 1.6; font-weight: 700; }
+  h3 { color: var(--sec); font-size: 1.05rem; font-weight: 700; }
+  strong { font-weight: 700; color: #000; }
+  /* Latin terms in parentheses use the same stack; browsers fall through */
+  .katex, code { direction: ltr; unicode-bidi: isolate; }
+  /* SVGs ship ~240px intrinsic size — scale to column like the PDF */
+  figure { margin: 1.6rem 0; text-align: center; }
+  figure img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+  figcaption { color: var(--sec); font-size: .95rem;
+               margin-top: .5rem; line-height: 1.7; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem 0; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+</style>
+</head>
+<body>
+<header class="chapter-open">
+  <div class="chap-label">باب <span class="chap-num">10</span></div>
+  <p class="chapter-title">گردش</p>
+</header>
+<main>
+<p>اب تک ہم نے زیادہ تر <strong>انتقالی حرکت</strong> (translation) کا
+مطالعہ کیا، جس میں کوئی جسم کسی سیدھی یا خمدار لکیر کے ساتھ آگے بڑھتا
+ہے۔ اِس باب میں ہم <strong>گردشی حرکت</strong> (rotation) کی طرف آتے ہیں،
+جس میں کوئی جسم کسی محور کے گرد گھومتا ہے۔ دلچسپ بات یہ ہے کہ گردش کے
+متغیرات یک بُعدی حرکت کے متغیرات سے بہت مشابہ ہیں — اگر کسی سوال میں
+”زاویائی“ کا لفظ ہٹا دیا جائے تو اکثر وہ باب 2 کا عام حرکت کا سوال بن
+جاتا ہے۔</p>
+<h1 id="گردشی-متغیرات">گردشی متغیرات</h1>
+<h2 id="صلب-جسم-اور-محور-گردش">صلب جسم اور محورِ گردش</h2>
+<p><strong>صلب جسم</strong> (rigid body) وہ جسم ہے جو اپنے تمام حصوں
+سمیت، اپنی شکل بدلے بغیر، یکجا ہو کر گھوم سکے۔ <strong>مقررہ
+محور</strong> (fixed axis) سے مراد ایسا محور ہے جو خود حرکت نہ کرے۔ خالص
+گردش میں جسم کا ہر نقطہ ایک دائرے میں گھومتا ہے جس کا مرکز محورِ گردش پر
+ہوتا ہے، اور ہر نقطہ کسی مقررہ وقفے میں یکساں زاویہ طے کرتا ہے۔</p>
+<h2 id="زاویائی-مقام">زاویائی مقام</h2>
+<p>جسم میں جڑی ایک <strong>خطِ حوالہ</strong> (reference line) فرض کریں
+جو محور کے عمود پر ہو اور جسم کے ساتھ گھومے۔ اِس خط کا کسی مقررہ سمت
+(مثلاً مثبت <span class="math inline">\(x\)</span> محور) سے بننے والا
+زاویہ <strong>زاویائی مقام</strong> <span
+class="math inline">\(\theta\)</span> کہلاتا ہے۔ اگر دائرے کا نصف قطر
+<span class="math inline">\(r\)</span> اور قوس کی لمبائی <span
+class="math inline">\(s\)</span> ہو تو ریڈین میں:</p>
+<p><span class="math display">\[\theta = \frac{s}{r} \qquad
+(\text{radian measure}).\]</span></p>
+<figure>
+<img src="figures/fig-1.svg"
+alt="خاکہ 1: زاویائی مقام \theta، قوس s اور نصف قطر r۔ خطِ حوالہ مثبت x محور سے زاویہ \theta بناتا ہے۔" />
+<figcaption aria-hidden="true">خاکہ 1: زاویائی مقام <span
+class="math inline">\(\theta\)</span>، قوس <span
+class="math inline">\(s\)</span> اور نصف قطر <span
+class="math inline">\(r\)</span>۔ خطِ حوالہ مثبت <span
+class="math inline">\(x\)</span> محور سے زاویہ <span
+class="math inline">\(\theta\)</span> بناتا ہے۔</figcaption>
+</figure>
+<p>ریڈین دو لمبائیوں کا تناسب ہونے کے سبب ایک خالص عدد ہے اور بے اِبعاد
+ہے۔ چونکہ <span class="math inline">\(r\)</span> نصف قطر والے دائرے کا
+محیط <span class="math inline">\(2\pi r\)</span> ہوتا ہے، اِس لیے پورے
+دائرے میں <span class="math inline">\(2\pi\)</span> ریڈین ہوتے ہیں:</p>
+<p><span class="math display">\[1\ \text{rev} = 360^{\circ} = 2\pi\
+\text{rad}, \qquad 1\ \text{rad} \approx 57.3^{\circ} \approx 0.159\
+\text{rev}.\]</span></p>
+<h2 id="زاویائی-انتقال">زاویائی انتقال</h2>
+<p>اگر جسم اپنا زاویائی مقام <span
+class="math inline">\(\theta_1\)</span> سے <span
+class="math inline">\(\theta_2\)</span> تک بدلے تو <strong>زاویائی
+انتقال</strong> (angular displacement):</p>
+<p><span class="math display">\[\Delta\theta = \theta_2 -
+\theta_1.\]</span></p>
+<p>اصول: گھڑی کی مخالف سمت میں گردش <strong>مثبت</strong> اور گھڑی کی
+سمت میں <strong>منفی</strong> ہوتی ہے۔</p>
+<h2 id="زاویائی-رفتار">زاویائی رفتار</h2>
+<p><span class="math inline">\(\Delta t\)</span> وقفے میں <strong>اوسط
+زاویائی رفتار</strong>:</p>
+<p><span class="math display">\[\omega_{\text{avg}} =
+\frac{\theta_2-\theta_1}{t_2-t_1} = \frac{\Delta\theta}{\Delta
+t}.\]</span></p>
+<p><strong>لمحاتی زاویائی رفتار</strong> (<span
+class="math inline">\(\omega\)</span>) اِسی تناسب کی وہ حد ہے جب <span
+class="math inline">\(\Delta t \to 0\)</span>:</p>
+<p><span class="math display">\[\omega =
+\frac{d\theta}{dt}.\]</span></p>
+<p>اِس کی اکائی عموماً <span class="math inline">\(\mathrm{rad/s}\)</span>
+ہوتی ہے۔</p>
+<h2 id="زاویائی-اسراع">زاویائی اسراع</h2>
+<p>اگر زاویائی رفتار <span class="math inline">\(\omega_1\)</span> سے
+<span class="math inline">\(\omega_2\)</span> تک بدلے تو <strong>اوسط
+زاویائی اسراع</strong>:</p>
+<p><span class="math display">\[\alpha_{\text{avg}} =
+\frac{\omega_2-\omega_1}{t_2-t_1} = \frac{\Delta\omega}{\Delta t},
+\qquad \alpha = \frac{d\omega}{dt}.\]</span></p>
+<p>اکائی عموماً <span class="math inline">\(\mathrm{rad/s^2}\)</span>
+ہوتی ہے۔</p>
+<h2 id="کیا-زاویائی-مقداریں-سمتیہ-ہیں">کیا زاویائی مقداریں سمتیہ
+ہیں؟</h2>
+<p>زاویائی رفتار اور زاویائی اسراع کو <strong>سمتیہ</strong> (vectors)
+کے طور پر دکھایا جا سکتا ہے: اِن کا رخ محورِ گردش کے ساتھ ساتھ ہوتا ہے،
+جسے <strong>دائیں ہاتھ کے اصول</strong> سے طے کیا جاتا ہے۔</p>
+<figure>
+<img src="figures/fig-2.svg"
+alt="خاکہ 2: زاویائی رفتار کا سمتیہ \vec{\omega} محورِ گردش کے ساتھ ہوتا ہے۔ دائیں ہاتھ کا اصول اِس کا رخ طے کرتا ہے۔" />
+<figcaption aria-hidden="true">خاکہ 2: زاویائی رفتار کا سمتیہ <span
+class="math inline">\(\vec{\omega}\)</span> محورِ گردش کے ساتھ ہوتا ہے۔
+دائیں ہاتھ کا اصول اِس کا رخ طے کرتا ہے۔</figcaption>
+</figure>
+<h1 id="مستقل-زاویائی-اسراع-کے-ساتھ-گردش">مستقل زاویائی اسراع کے ساتھ
+گردش</h1>
+<p>جیسے انتقالی حرکت میں مستقل اسراع ایک اہم خاص صورت ہے، ویسے ہی گردش
+میں <strong>مستقل زاویائی اسراع</strong> اہم ہے۔ حرکیاتی مساوات انتقالی
+مساوات کے بالکل متوازی ہیں — صرف <span class="math inline">\(x \to
+\theta\)</span>، <span class="math inline">\(v \to \omega\)</span>،
+<span class="math inline">\(a \to \alpha\)</span> رکھ دیں:</p>
+<p><span class="math display">\[\begin{aligned}
+\omega &amp;= \omega_0 + \alpha t,\\
+\theta - \theta_0 &amp;= \omega_0 t + \tfrac{1}{2}\alpha t^2,\\
+\omega^2 &amp;= \omega_0^2 + 2\alpha(\theta-\theta_0).
+\end{aligned}\]</span></p>
+<h2 id="مثال-1-مستقل-زاویائی-اسراع">مثال 1: مستقل زاویائی اسراع</h2>
+<p><strong>سوال:</strong> ایک پہیہ سکون سے شروع ہوتا ہے اور <span
+class="math inline">\(\alpha = 2.0\ \mathrm{rad/s^2}\)</span> کے مستقل
+اسراع سے گھومتا ہے۔ <span class="math inline">\(t = 5.0\
+\mathrm{s}\)</span> پر اِس کی زاویائی رفتار اور طے شدہ زاویہ کیا ہوں
+گے؟</p>
+<p><strong>حل:</strong> چونکہ <span class="math inline">\(\omega_0 =
+0\)</span>:</p>
+<p><span class="math display">\[\omega = \omega_0 + \alpha t =
+(2.0)(5.0) = 10\ \mathrm{rad/s},\]</span></p>
+<p><span class="math display">\[\theta - \theta_0 = \tfrac{1}{2}\alpha
+t^2 = \tfrac{1}{2}(2.0)(5.0)^2 = 25\ \mathrm{rad}.\]</span></p>
+<h1 id="خطی-اور-زاویائی-متغیرات-کا-تعلق">خطی اور زاویائی متغیرات کا
+تعلق</h1>
+<p>جب کوئی صلب جسم محور کے گرد گھومتا ہے تو اُس کا ہر نقطہ اپنے اپنے
+دائرے میں گھومتا ہے۔ سب کی زاویائی رفتار <span
+class="math inline">\(\omega\)</span> یکساں ہوتی ہے، مگر محور سے جتنا
+دور نقطہ ہو، اُس کی <strong>خطی رفتار</strong> اُتنی زیادہ ہوتی ہے۔</p>
+<p><span class="math display">\[s = \theta r, \qquad v = \omega r,
+\qquad a_t = \alpha r, \qquad a_r = \frac{v^2}{r} = \omega^2
+r.\]</span></p>
+<figure>
+<img src="figures/fig-3.svg"
+alt="خاکہ 3: گھومتے جسم کے نقطہ P پر خطی اسراع کے دو اجزا — مماسی a_t = \alpha r اور نصف قطری a_r = \omega^2 r۔" />
+<figcaption aria-hidden="true">خاکہ 3: گھومتے جسم کے نقطہ <span
+class="math inline">\(P\)</span> پر خطی اسراع کے دو اجزا — مماسی <span
+class="math inline">\(a_t = \alpha r\)</span> اور نصف قطری <span
+class="math inline">\(a_r = \omega^2 r\)</span>۔</figcaption>
+</figure>
+<h1 id="گردشی-جمود-اور-متوازی-محور-کا-مسئلہ">گردشی جمود اور متوازی محور
+کا مسئلہ</h1>
+<p>گھومتے جسم کی کل حرکی توانائی:</p>
+<p><span class="math display">\[K = \tfrac{1}{2} I \omega^2, \qquad I =
+\sum m_i r_i^2 = \int r^2\, dm.\]</span></p>
+<p>اگر مرکزِ کمیت سے گزرتے محور کے گرد جمود <span
+class="math inline">\(I_{\text{com}}\)</span> معلوم ہو، تو <span
+class="math inline">\(h\)</span> فاصلے پر متوازی محور کے گرد:</p>
+<p><span class="math display">\[I = I_{\text{com}} + M h^2\]</span></p>
+<p>(متوازی محور کا مسئلہ)</p>
+<figure>
+<img src="figures/fig-4.svg"
+alt="خاکہ 4: متوازی محور کا مسئلہ — مرکزِ کمیت سے گزرتے محور اور P سے گزرتے متوازی محور کے درمیان فاصلہ h۔" />
+<figcaption aria-hidden="true">خاکہ 4: متوازی محور کا مسئلہ — مرکزِ کمیت
+سے گزرتے محور اور <span class="math inline">\(P\)</span> سے گزرتے متوازی
+محور کے درمیان فاصلہ <span
+class="math inline">\(h\)</span>۔</figcaption>
+</figure>
+<h1 id="مروڑ">مروڑ</h1>
+<p><strong>مروڑ</strong> (torque) کسی جسم پر، کسی محور کے گرد، قوت کے
+ذریعے پیدا ہونے والا گھمانے کا عمل ہے۔ مروڑ کی مقدار:</p>
+<p><span class="math display">\[\tau = r F \sin\phi = r_\perp
+F,\]</span></p>
+<p>جہاں <span class="math inline">\(r_\perp = r\sin\phi\)</span>
+<strong>بازوئے مروڑ</strong> (moment arm) — محور سے قوت کے خطِ عمل تک
+عمودی فاصلہ — ہے۔</p>
+<figure>
+<img src="figures/fig-5.svg"
+alt="خاکہ 5: مروڑ \tau = rF\sin\phi۔ \vec{r} مقام سمتیہ، \vec{F} قوت، \phi اُن کے درمیان زاویہ، اور r_\perp بازوئے مروڑ۔" />
+<figcaption aria-hidden="true">خاکہ 5: مروڑ <span
+class="math inline">\(\tau = rF\sin\phi\)</span>۔ <span
+class="math inline">\(\vec{r}\)</span> مقام سمتیہ، <span
+class="math inline">\(\vec{F}\)</span> قوت، <span
+class="math inline">\(\phi\)</span> اُن کے درمیان زاویہ، اور <span
+class="math inline">\(r_\perp\)</span> بازوئے مروڑ۔</figcaption>
+</figure>
+<p>گردش کے لیے نیوٹن کا دوسرا قانون:</p>
+<p><span class="math display">\[\tau_{\text{net}} = I\alpha\]</span></p>
+<p>(ریڈین میں)</p>
+<h1 class="unnumbered" id="خلاصہ">خلاصہ</h1>
+<p><strong>گردشی متغیرات:</strong> <span class="math inline">\(\theta =
+s/r\)</span>؛ <span class="math inline">\(\omega = d\theta/dt\)</span>؛
+<span class="math inline">\(\alpha = d\omega/dt\)</span>۔ گھڑی کی مخالف
+سمت مثبت۔</p>
+<p><strong>خطی–زاویائی تعلق:</strong> <span class="math inline">\(s =
+\theta r\)</span>، <span class="math inline">\(v = \omega r\)</span>،
+<span class="math inline">\(a_t = \alpha r\)</span>، <span
+class="math inline">\(a_r = \omega^2 r\)</span>۔</p>
+<p><strong>گردشی جمود اور توانائی:</strong> <span
+class="math inline">\(K = \tfrac{1}{2}I\omega^2\)</span>؛ متوازی محور:
+<span class="math inline">\(I = I_{\text{com}} + Mh^2\)</span>۔</p>
+<p><strong>مروڑ:</strong> <span class="math inline">\(\tau = rF\sin\phi
+= r_\perp F\)</span>؛ گردش کا نیوٹن دوسرا قانون: <span
+class="math inline">\(\tau_{\text{net}} = I\alpha\)</span>۔</p>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "\\[", right: "\\]", display: true},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    throwOnError: false
+  });
+});
+</script>
+</body>
+</html>

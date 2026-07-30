@@ -1,0 +1,211 @@
+\documentclass{urdu-textbook}
+\begin{document}
+\TextbookChapter{10}{گردش}
+اب تک ہم نے زیادہ تر \textbf{انتقالی حرکت} \en{(translation)} کا مطالعہ کیا،
+جس میں کوئی جسم کسی سیدھی یا خمدار لکیر کے ساتھ آگے بڑھتا ہے۔ اِس باب میں
+ہم \textbf{گردشی حرکت} \en{(rotation)} کی طرف آتے ہیں، جس میں کوئی جسم کسی
+محور کے گرد گھومتا ہے۔ دلچسپ بات یہ ہے کہ گردش کے متغیرات یک بُعدی حرکت
+کے متغیرات سے بہت مشابہ ہیں --- اگر کسی سوال میں ”زاویائی“ کا لفظ ہٹا
+دیا جائے تو اکثر وہ باب 2 کا عام حرکت کا سوال بن جاتا ہے۔
+
+\hypertarget{ux6afux631ux62fux634ux6cc-ux645ux62aux63aux6ccux631ux627ux62a}{%
+\section{گردشی
+متغیرات}\label{ux6afux631ux62fux634ux6cc-ux645ux62aux63aux6ccux631ux627ux62a}}
+
+\hypertarget{ux635ux644ux628-ux62cux633ux645-ux627ux648ux631-ux645ux62dux648ux631-ux6afux631ux62fux634}{%
+\subsection{صلب جسم اور محورِ
+گردش}\label{ux635ux644ux628-ux62cux633ux645-ux627ux648ux631-ux645ux62dux648ux631-ux6afux631ux62fux634}}
+
+\textbf{صلب جسم} \en{(rigid body)} وہ جسم ہے جو اپنے تمام حصوں سمیت، اپنی شکل
+بدلے بغیر، یکجا ہو کر گھوم سکے۔ \textbf{مقررہ محور} \en{(fixed axis)} سے مراد
+ایسا محور ہے جو خود حرکت نہ کرے۔ خالص گردش میں جسم کا ہر نقطہ ایک دائرے
+میں گھومتا ہے جس کا مرکز محورِ گردش پر ہوتا ہے، اور ہر نقطہ کسی مقررہ
+وقفے میں یکساں زاویہ طے کرتا ہے۔
+
+\hypertarget{ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux642ux627ux645}{%
+\subsection{زاویائی
+مقام}\label{ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux642ux627ux645}}
+
+جسم میں جڑی ایک \textbf{خطِ حوالہ} \en{(reference line)} فرض کریں جو محور کے
+عمود پر ہو اور جسم کے ساتھ گھومے۔ اِس خط کا کسی مقررہ سمت (مثلاً مثبت
+\(x\) محور) سے بننے والا زاویہ \textbf{زاویائی مقام} \(\theta\) کہلاتا
+ہے۔ اگر دائرے کا نصف قطر \(r\) اور قوس کی لمبائی \(s\) ہو تو ریڈین میں:
+
+\[\theta = \frac{s}{r} \qquad (\mathrm{radian measure}).\]
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig-1.pdf}
+\caption{خاکہ 1: زاویائی مقام \(\theta\)، قوس \(s\) اور نصف قطر \(r\)۔
+خطِ حوالہ مثبت \(x\) محور سے زاویہ \(\theta\) بناتا ہے۔}
+\end{figure}
+
+ریڈین دو لمبائیوں کا تناسب ہونے کے سبب ایک خالص عدد ہے اور بے اِبعاد ہے۔
+چونکہ \(r\) نصف قطر والے دائرے کا محیط \(2\pi r\) ہوتا ہے، اِس لیے پورے
+دائرے میں \(2\pi\) ریڈین ہوتے ہیں:
+
+\[1\ \mathrm{rev} = 360^{\circ} = 2\pi\ \mathrm{rad}, \qquad 1\ \mathrm{rad} \approx 57.3^{\circ} \approx 0.159\ \mathrm{rev}.\]
+
+\hypertarget{ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux646ux62aux642ux627ux644}{%
+\subsection{زاویائی
+انتقال}\label{ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux646ux62aux642ux627ux644}}
+
+اگر جسم اپنا زاویائی مقام \(\theta_1\) سے \(\theta_2\) تک بدلے تو
+\textbf{زاویائی انتقال} \en{(angular displacement)}:
+
+\[\Delta\theta = \theta_2 - \theta_1.\]
+
+اصول: گھڑی کی مخالف سمت میں گردش \textbf{مثبت} اور گھڑی کی سمت میں
+\textbf{منفی} ہوتی ہے۔
+
+\hypertarget{ux632ux627ux648ux6ccux627ux626ux6cc-ux631ux641ux62aux627ux631}{%
+\subsection{زاویائی
+رفتار}\label{ux632ux627ux648ux6ccux627ux626ux6cc-ux631ux641ux62aux627ux631}}
+
+\(\Delta t\) وقفے میں \textbf{اوسط زاویائی رفتار}:
+
+\[\omega_{\mathrm{avg}} = \frac{\theta_2-\theta_1}{t_2-t_1} = \frac{\Delta\theta}{\Delta t}.\]
+
+\textbf{لمحاتی زاویائی رفتار} (\(\omega\)) اِسی تناسب کی وہ حد ہے جب
+\(\Delta t \to 0\):
+
+\[\omega = \frac{d\theta}{dt}.\]
+
+اِس کی اکائی عموماً \(\mathrm{rad/s}\) ہوتی ہے۔
+
+\hypertarget{ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639}{%
+\subsection{زاویائی
+اسراع}\label{ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639}}
+
+اگر زاویائی رفتار \(\omega_1\) سے \(\omega_2\) تک بدلے تو \textbf{اوسط
+زاویائی اسراع}:
+
+\[\alpha_{\mathrm{avg}} = \frac{\omega_2-\omega_1}{t_2-t_1} = \frac{\Delta\omega}{\Delta t}, \qquad \alpha = \frac{d\omega}{dt}.\]
+
+اکائی عموماً \(\mathrm{rad/s^2}\) ہوتی ہے۔
+
+\hypertarget{ux6a9ux6ccux627-ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux642ux62fux627ux631ux6ccux6ba-ux633ux645ux62aux6ccux6c1-ux6c1ux6ccux6ba}{%
+\subsection{کیا زاویائی مقداریں سمتیہ
+ہیں؟}\label{ux6a9ux6ccux627-ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux642ux62fux627ux631ux6ccux6ba-ux633ux645ux62aux6ccux6c1-ux6c1ux6ccux6ba}}
+
+زاویائی رفتار اور زاویائی اسراع کو \textbf{سمتیہ} \en{(vectors)} کے طور پر
+دکھایا جا سکتا ہے: اِن کا رخ محورِ گردش کے ساتھ ساتھ ہوتا ہے، جسے
+\textbf{دائیں ہاتھ کے اصول} سے طے کیا جاتا ہے۔
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig-2.pdf}
+\caption{خاکہ 2: زاویائی رفتار کا سمتیہ \(\vec{\omega}\) محورِ گردش کے
+ساتھ ہوتا ہے۔ دائیں ہاتھ کا اصول اِس کا رخ طے کرتا ہے۔}
+\end{figure}
+
+\hypertarget{ux645ux633ux62aux642ux644-ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639-ux6a9ux6d2-ux633ux627ux62aux6be-ux6afux631ux62fux634}{%
+\section{مستقل زاویائی اسراع کے ساتھ
+گردش}\label{ux645ux633ux62aux642ux644-ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639-ux6a9ux6d2-ux633ux627ux62aux6be-ux6afux631ux62fux634}}
+
+جیسے انتقالی حرکت میں مستقل اسراع ایک اہم خاص صورت ہے، ویسے ہی گردش میں
+\textbf{مستقل زاویائی اسراع} اہم ہے۔ حرکیاتی مساوات انتقالی مساوات کے
+بالکل متوازی ہیں --- صرف \(x \to \theta\)، \(v \to \omega\)،
+\(a \to \alpha\) رکھ دیں:
+
+\[\begin{aligned}
+\omega &= \omega_0 + \alpha t,\\
+\theta - \theta_0 &= \omega_0 t + \tfrac{1}{2}\alpha t^2,\\
+\omega^2 &= \omega_0^2 + 2\alpha(\theta-\theta_0).
+\end{aligned}\]
+
+\hypertarget{ux645ux62bux627ux644-1-ux645ux633ux62aux642ux644-ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639}{%
+\subsection{مثال 1: مستقل زاویائی
+اسراع}\label{ux645ux62bux627ux644-1-ux645ux633ux62aux642ux644-ux632ux627ux648ux6ccux627ux626ux6cc-ux627ux633ux631ux627ux639}}
+
+\textbf{سوال:} ایک پہیہ سکون سے شروع ہوتا ہے اور
+\(\alpha = 2.0\ \mathrm{rad/s^2}\) کے مستقل اسراع سے گھومتا ہے۔
+\(t = 5.0\ \mathrm{s}\) پر اِس کی زاویائی رفتار اور طے شدہ زاویہ کیا ہوں
+گے؟
+
+\textbf{حل:} چونکہ \(\omega_0 = 0\):
+
+\[\omega = \omega_0 + \alpha t = (2.0)(5.0) = 10\ \mathrm{rad/s},\]
+
+\[\theta - \theta_0 = \tfrac{1}{2}\alpha t^2 = \tfrac{1}{2}(2.0)(5.0)^2 = 25\ \mathrm{rad}.\]
+
+\hypertarget{ux62eux637ux6cc-ux627ux648ux631-ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux62aux63aux6ccux631ux627ux62a-ux6a9ux627-ux62aux639ux644ux642}{%
+\section{خطی اور زاویائی متغیرات کا
+تعلق}\label{ux62eux637ux6cc-ux627ux648ux631-ux632ux627ux648ux6ccux627ux626ux6cc-ux645ux62aux63aux6ccux631ux627ux62a-ux6a9ux627-ux62aux639ux644ux642}}
+
+جب کوئی صلب جسم محور کے گرد گھومتا ہے تو اُس کا ہر نقطہ اپنے اپنے دائرے
+میں گھومتا ہے۔ سب کی زاویائی رفتار \(\omega\) یکساں ہوتی ہے، مگر محور سے
+جتنا دور نقطہ ہو، اُس کی \textbf{خطی رفتار} اُتنی زیادہ ہوتی ہے۔
+
+\[s = \theta r, \qquad v = \omega r, \qquad a_t = \alpha r, \qquad a_r = \frac{v^2}{r} = \omega^2 r.\]
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig-3.pdf}
+\caption{خاکہ 3: گھومتے جسم کے نقطہ \(P\) پر خطی اسراع کے دو اجزا ---
+مماسی \(a_t = \alpha r\) اور نصف قطری \(a_r = \omega^2 r\)۔}
+\end{figure}
+
+\hypertarget{ux6afux631ux62fux634ux6cc-ux62cux645ux648ux62f-ux627ux648ux631-ux645ux62aux648ux627ux632ux6cc-ux645ux62dux648ux631-ux6a9ux627-ux645ux633ux626ux644ux6c1}{%
+\section{گردشی جمود اور متوازی محور کا
+مسئلہ}\label{ux6afux631ux62fux634ux6cc-ux62cux645ux648ux62f-ux627ux648ux631-ux645ux62aux648ux627ux632ux6cc-ux645ux62dux648ux631-ux6a9ux627-ux645ux633ux626ux644ux6c1}}
+
+گھومتے جسم کی کل حرکی توانائی:
+
+\[K = \tfrac{1}{2} I \omega^2, \qquad I = \sum m_i r_i^2 = \int r^2\, dm.\]
+
+اگر مرکزِ کمیت سے گزرتے محور کے گرد جمود \(I_{\mathrm{com}}\) معلوم ہو، تو
+\(h\) فاصلے پر متوازی محور کے گرد:
+
+\[I = I_{\mathrm{com}} + M h^2\]
+
+(متوازی محور کا مسئلہ)
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig-4.pdf}
+\caption{خاکہ 4: متوازی محور کا مسئلہ --- مرکزِ کمیت سے گزرتے محور اور
+\(P\) سے گزرتے متوازی محور کے درمیان فاصلہ \(h\)۔}
+\end{figure}
+
+\hypertarget{ux645ux631ux648ux691}{%
+\section{مروڑ}\label{ux645ux631ux648ux691}}
+
+\textbf{مروڑ} \en{(torque)} کسی جسم پر، کسی محور کے گرد، قوت کے ذریعے پیدا
+ہونے والا گھمانے کا عمل ہے۔ مروڑ کی مقدار:
+
+\[\tau = r F \sin\phi = r_\perp F,\]
+
+جہاں \(r_\perp = r\sin\phi\) \textbf{بازوئے مروڑ} \en{(moment arm)} --- محور
+سے قوت کے خطِ عمل تک عمودی فاصلہ --- ہے۔
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig-5.pdf}
+\caption{خاکہ 5: مروڑ \(\tau = rF\sin\phi\)۔ \(\vec{r}\) مقام سمتیہ،
+\(\vec{F}\) قوت، \(\phi\) اُن کے درمیان زاویہ، اور \(r_\perp\) بازوئے
+مروڑ۔}
+\end{figure}
+
+گردش کے لیے نیوٹن کا دوسرا قانون:
+
+\[\tau_{\mathrm{net}} = I\alpha\]
+
+(ریڈین میں)
+
+\hypertarget{ux62eux644ux627ux635ux6c1}{%
+\section*{خلاصہ}\label{ux62eux644ux627ux635ux6c1}}
+\addcontentsline{toc}{section}{خلاصہ}
+
+\textbf{گردشی متغیرات:} \(\theta = s/r\)؛ \(\omega = d\theta/dt\)؛
+\(\alpha = d\omega/dt\)۔ گھڑی کی مخالف سمت مثبت۔
+
+\textbf{خطی--زاویائی تعلق:} \(s = \theta r\)، \(v = \omega r\)،
+\(a_t = \alpha r\)، \(a_r = \omega^2 r\)۔
+
+\textbf{گردشی جمود اور توانائی:} \(K = \tfrac{1}{2}I\omega^2\)؛ متوازی
+محور: \(I = I_{\mathrm{com}} + Mh^2\)۔
+
+\textbf{مروڑ:} \(\tau = rF\sin\phi = r_\perp F\)؛ گردش کا نیوٹن دوسرا
+قانون: \(\tau_{\mathrm{net}} = I\alpha\)۔
+\end{document}

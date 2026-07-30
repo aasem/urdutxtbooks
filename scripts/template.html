@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$if(chapter)$$chapter$. $endif$$title$</title>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans:wght@400;700&display=swap">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root { --fg:#1a1a1a; --sec:#1e5a8c; --rule:#cd9623; --bg:#fff; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Noto Nastaliq Urdu", serif;
+    font-size: 1.15rem; line-height: 2.0;
+    color: var(--fg); background: var(--bg);
+    max-width: 42rem; margin: 0 auto; padding: 1.2rem 1rem 4rem;
+  }
+  .chapter-open {
+    text-align: center;
+    margin: 1.5rem 0 2.4rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .chapter-open .chap-label {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--sec);
+  }
+  .chapter-open .chap-label .chap-num {
+    font-family: "Noto Sans", sans-serif;
+  }
+  .chapter-open .chapter-title {
+    font-size: 2rem; margin: .55rem 0 0;
+    font-weight: 700; color: var(--sec); line-height: 1.5;
+  }
+  main { counter-reset: sec; }
+  main h1 {
+    color: var(--sec); line-height: 1.6; font-weight: 700;
+    font-size: 1.35rem; border-bottom: 2px solid var(--rule);
+    padding-bottom: .3rem; margin-top: 2rem;
+    counter-increment: sec;
+  }
+  main h1::before {
+    content: "$chapter$." counter(sec) "\2009";
+    font-family: "Noto Sans", sans-serif;
+    margin-left: .35em;
+  }
+  main h1.unnumbered { counter-increment: none; border-bottom-color: #ddd; }
+  main h1.unnumbered::before { content: none; }
+  h2 { color: var(--sec); font-size: 1.15rem; margin-top: 1.6rem;
+       line-height: 1.6; font-weight: 700; }
+  h3 { color: var(--sec); font-size: 1.05rem; font-weight: 700; }
+  strong { font-weight: 700; color: #000; }
+  /* Latin terms in parentheses use the same stack; browsers fall through */
+  .katex, code { direction: ltr; unicode-bidi: isolate; }
+  /* SVGs ship ~240px intrinsic size — scale to column like the PDF */
+  figure { margin: 1.6rem 0; text-align: center; }
+  figure img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+  figcaption { color: var(--sec); font-size: .95rem;
+               margin-top: .5rem; line-height: 1.7; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem 0; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+</style>
+</head>
+<body>
+$if(chapter)$
+<header class="chapter-open">
+  <div class="chap-label">باب <span class="chap-num">$chapter$</span></div>
+  <p class="chapter-title">$title$</p>
+</header>
+$endif$
+<main>
+$body$
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "\\[", right: "\\]", display: true},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    throwOnError: false
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+% fig-3.tex — standalone figure. One tikzpicture only. Preamble fixed.
+\documentclass[border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings,angles,quotes,patterns,calc}
+\definecolor{seccolor}{RGB}{30,90,140}
+\definecolor{rulecolor}{RGB}{205,150,35}
+\definecolor{accent}{RGB}{180,60,40}
+\definecolor{accent2}{RGB}{40,120,90}
+\definecolor{lightfill}{RGB}{232,240,247}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \draw[thin,gray!50] (0,0) circle (2.8);
+  \fill (0,0) circle (1.6pt);
+  \node[below left] at (0,0) {\small $O$};
+  \coordinate (P) at (40:2.8);
+  \fill[accent] (P) circle (2pt);
+  \node[accent] at (40:3.1) {\small $P$};
+  \draw[gray!60] (0,0)--(P) node[midway,above,sloped]{\small $r$};
+  \draw[->,accent2,very thick] (P)--($(P)!1.3cm!90:(0,0)$) node[above right]{\small $a_t$};
+  \draw[->,accent,very thick] (P)--($(P)!1.3cm!(0,0)$) node[below left]{\small $a_r$};
+\end{tikzpicture}
+\end{document}

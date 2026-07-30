@@ -1,0 +1,26 @@
+% fig-1.tex — standalone figure. Authoring rule: this file contains ONE
+% tikzpicture and nothing else. The preamble below is fixed; do not edit it.
+% Colors available: seccolor, accent, accent2, rulecolor, lightfill.
+\documentclass[border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings,angles,quotes,patterns,calc}
+\definecolor{seccolor}{RGB}{30,90,140}
+\definecolor{rulecolor}{RGB}{205,150,35}
+\definecolor{accent}{RGB}{180,60,40}
+\definecolor{accent2}{RGB}{40,120,90}
+\definecolor{lightfill}{RGB}{232,240,247}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \draw[->,gray!60] (-0.4,0)--(4.6,0) node[right]{\small $x$};
+  \draw[->,gray!60] (0,-0.4)--(0,4.2) node[above]{\small $y$};
+  \draw[thin,gray!50] (0,0) circle (3.2);
+  \draw[very thick,accent] (0,0)--(50:3.2) node[midway,above,sloped]{\small $r$};
+  \node[accent] at (50:3.55) {\small reference line};
+  \draw[very thick,accent2] (3.2,0) arc (0:50:3.2);
+  \node[accent2] at (25:3.55) {\small $s$};
+  \draw[->,seccolor,thick] (1.3,0) arc (0:50:1.3);
+  \node[seccolor] at (25:1.0) {\small $\theta$};
+  \fill (0,0) circle (1.6pt);
+  \node[below left] at (0,0) {\small $O$};
+\end{tikzpicture}
+\end{document}

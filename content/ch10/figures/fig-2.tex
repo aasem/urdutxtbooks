@@ -1,0 +1,19 @@
+% fig-2.tex — standalone figure. One tikzpicture only. Preamble fixed.
+\documentclass[border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.markings,angles,quotes,patterns,calc}
+\definecolor{seccolor}{RGB}{30,90,140}
+\definecolor{rulecolor}{RGB}{205,150,35}
+\definecolor{accent}{RGB}{180,60,40}
+\definecolor{accent2}{RGB}{40,120,90}
+\definecolor{lightfill}{RGB}{232,240,247}
+\begin{document}
+\begin{tikzpicture}[scale=1.0]
+  \draw[gray!50,thin] (0,-1.8)--(0,2.6);
+  \draw[thick,seccolor,fill=lightfill] (0,0) ellipse (1.9 and 0.6);
+  \fill (0,0) circle (1.6pt);
+  \draw[->,accent,very thick] (1.5,0.25) arc (20:320:1.6 and 0.5);
+  \draw[->,accent2,very thick] (0,0)--(0,2.4) node[right]{\small $\vec{\omega}$};
+  \node[seccolor] at (0,-1.05) {\small rotation axis};
+\end{tikzpicture}
+\end{document}
