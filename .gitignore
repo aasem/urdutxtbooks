@@ -15,6 +15,3 @@ Thumbs.db
 # Generated chapter builds (admins regenerate; do not PR these)
 content/*/output/
 
-# Local scratch / old monolithic TeX — never part of the book
-temp/
-/output/
