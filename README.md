@@ -1,12 +1,20 @@
-# University Physics (Urdu)
+# Translation Project — Urdu Science Textbooks
 
-Urdu translation of selected chapters from **Halliday / Resnick / Walker**, course **PHYS-101**.
-This repo is **one book only**.
+We translate science textbooks into **Urdu**, chapter by chapter, as Markdown.
+Anyone can help: you do not need to be a programmer or know LaTeX.
+
+### How the project is organized
+
+| Rule | Meaning |
+|------|---------|
+| **One book = one GitHub repo** | Physics, calculus, chemistry, … each gets its **own** repository. Do not mix books in one repo. |
+| **Same workflow everywhere** | Every book repo uses the same layout (`content/`, `book.yaml`, Docker build) and the same translator → PR → admin flow below. |
+| **This README** | Explains that shared process. Commands use example URLs/names from **this** repo; for another book, open **that** book’s GitHub page and substitute its name/URL. |
+
+**Example (this repo):** University Physics (Urdu) — selected Halliday / Resnick / Walker chapters (e.g. a PHYS-101 style course). See `book.yaml` for this book’s title, course code, and source. Other books will have their own repos and their own `book.yaml`.
 
 - **Translators** edit Markdown under `content/` (no Docker, no TeX).
 - **Admins** review PRs, compile HTML/PDF with Docker, then merge and publish.
-
-Book metadata lives in `book.yaml`.
 
 ---
 
@@ -14,7 +22,7 @@ Book metadata lives in `book.yaml`.
 
 | Role | You do | You do not |
 |------|--------|------------|
-| **Translator** | Copy the project → edit a section/chapter → ask to merge your changes | Run Docker, commit `output/`, change `scripts/` |
+| **Translator** | Copy the book’s repo → edit a section/chapter → ask to merge your changes | Run Docker, commit `output/`, change `scripts/` |
 | **Admin** | Review that request, optionally build with Docker, approve & merge, publish HTML/PDF | Expect translators to ship PDF/HTML themselves |
 
 ---
@@ -25,17 +33,17 @@ You do **not** need to be a programmer. You need these ideas:
 
 | Word | Meaning |
 |------|---------|
-| **Repository (repo)** | The project folder on GitHub — all book files live here: https://github.com/aasem/urdutxtbooks |
+| **Repository (repo)** | One book’s project on GitHub (all of that book’s files). Example: https://github.com/aasem/urdutxtbooks |
 | **Clone** | Download a copy of the repo to your computer |
-| **Fork** | Your own copy of the repo **under your GitHub account**. You push to *your* copy, then ask the original project to take your changes |
+| **Fork** | Your own copy of **that book’s** repo under your GitHub account. You push to *your* copy, then ask the original project to take your changes |
 | **Branch** | A named line of work (e.g. `translate/ch01-time`) so you do not edit `main` directly. Think of it as a draft notebook |
 | **Commit** | A saved snapshot of your edits with a short message |
 | **Push** | Upload your commits from your computer to GitHub |
 | **Pull Request (PR)** | A formal request: “Please review my branch and merge it into `main`.” Discussion and review happen on the PR page |
 | **Merge** | Admin accepts the PR; your text becomes part of the official book on `main` |
-| **`main`** | The official, up-to-date branch of the book. Always start new work from a fresh `main` |
+| **`main`** | The official, up-to-date branch of **that** book. Always start new work from a fresh `main` |
 
-**Typical student path:** Fork → Clone your fork → New branch → Edit in Obsidian → Commit → Push → Open PR → Fix review comments → Admin merges.
+**Typical student path:** Open the **correct book’s** GitHub page → Fork → Clone your fork → New branch → Edit in Obsidian → Commit → Push → Open PR → Fix review comments → Admin merges.
 
 Install once on your machine:
 
@@ -51,37 +59,40 @@ On Windows you can use **Git Bash** (comes with Git) or PowerShell for the comma
 
 You only need **Git** + **Obsidian** (or VS Code). You do **not** need Docker or LaTeX.
 
+Work in the repo for **the book you were assigned**. Examples below use `urdutxtbooks`; replace with your book’s GitHub name/URL when different.
+
 ### 1) Get the repo onto your computer
 
 **Option A — fork (usual for students)**
 
 1. Sign in to GitHub.
-2. Open https://github.com/aasem/urdutxtbooks
-3. Click **Fork** (top right). GitHub creates `https://github.com/<your-username>/urdutxtbooks`
+2. Open **that book’s** repo page (example: https://github.com/aasem/urdutxtbooks).
+3. Click **Fork** (top right). GitHub creates `https://github.com/<your-username>/<book-repo>`
 4. On **your** fork page, click the green **Code** button, copy the HTTPS URL, then in a terminal:
 
 ```bash
-git clone https://github.com/<your-username>/urdutxtbooks.git
-cd urdutxtbooks
+git clone https://github.com/<your-username>/<book-repo>.git
+cd <book-repo>
 ```
 
-Replace `<your-username>` with your GitHub username.
+Example: `<book-repo>` → `urdutxtbooks`. Replace `<your-username>` with your GitHub username.
 
-5. Link the original project as `upstream` (do this once), so you can later download updates:
+5. Link the original book repo as `upstream` (do this once), so you can later download updates:
 
 ```bash
-git remote add upstream https://github.com/aasem/urdutxtbooks.git
+git remote add upstream https://github.com/aasem/<book-repo>.git
 git remote -v
 ```
 
-You should see `origin` (your fork) and `upstream` (aasem’s repo).
+Example upstream: `https://github.com/aasem/urdutxtbooks.git`.  
+You should see `origin` (your fork) and `upstream` (the official book repo).
 
 **Option B — clone without forking**  
-Only if an admin already gave you write access to `aasem/urdutxtbooks`:
+Only if an admin already gave you write access to the official book repo:
 
 ```bash
-git clone https://github.com/aasem/urdutxtbooks.git
-cd urdutxtbooks
+git clone https://github.com/aasem/<book-repo>.git
+cd <book-repo>
 ```
 
 Then use `origin` instead of `upstream` in the pull commands below.
@@ -134,8 +145,8 @@ Do **not** edit `scripts/`, `Dockerfile`, or anything under `output/`.
 
 ### 4) Write Urdu + math in Obsidian
 
-1. Install Obsidian → **Open folder as vault** → select the `urdutxtbooks` folder (the one you cloned).
-2. In the file list, open e.g. `content/ch01/sections/02-time.md`.
+1. Install Obsidian → **Open folder as vault** → select the cloned book folder (the repo root).
+2. In the file list, open a section under `content/`, e.g. `content/ch01/sections/02-time.md`.
 3. Turn on **Live Preview** or **Reading** view so math shows correctly.
 4. Write Urdu as normal. For equations use:
    - Inline: `$E = mc^2$`
@@ -154,7 +165,7 @@ Save files in Obsidian (normal save). Then go back to the terminal for Git.
 
 ### 5) Save to GitHub and open a Pull Request
 
-In the terminal, from the `urdutxtbooks` folder, on your branch:
+In the terminal, from the book folder, on your branch:
 
 ```bash
 git status
@@ -172,9 +183,9 @@ git push -u origin translate/ch01-time
 
 **Open the Pull Request (on the website):**
 
-1. Open https://github.com/aasem/urdutxtbooks (or your fork — GitHub often shows a yellow banner **Compare & pull request** after a push).
+1. Open the **official book** repo on GitHub (or your fork — GitHub often shows a yellow banner **Compare & pull request** after a push).
 2. Click **Pull requests** → **New pull request**.
-3. Set base repository: `aasem/urdutxtbooks`, base branch: **`main`**.  
+3. Set base repository: the **official book** repo, base branch: **`main`**.  
    Set compare: **your fork** and **your branch** (e.g. `translate/ch01-time`).
 4. Title example: `ch01: translate time section`.
 5. In the description, write what you translated and any doubts.
@@ -301,9 +312,14 @@ build.sh
 Dockerfile
 ```
 
-## More books
+## Starting another book (admins)
 
-One **GitHub repo per book**. Clone this repo as a template. Duplicating Docker/scripts is fine for now.
+1. Create a **new** GitHub repository (do not put a second book inside an existing one).
+2. Copy this repo’s shape: `content/`, `book.yaml`, `scripts/`, `build.sh`, `Dockerfile`, and this README.
+3. Fill in `book.yaml` (Urdu/English title, course if any, source textbook).
+4. Add chapters under `content/ch01`, `content/ch02`, … and invite translators to **that** repo.
+
+Duplicating Docker/scripts per book is fine for now.
 
 ## Notes
 
