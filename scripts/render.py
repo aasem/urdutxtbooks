@@ -31,14 +31,22 @@ CLS_FILE = os.path.join(HERE, "urdu-textbook.cls")
 def fix_pdf_latex(tex):
     """Post-process Pandoc LaTeX for RTL Urdu + Latin islands.
 
-    Plain ASCII ``(translation)`` inside RTL gets mirrored brackets and
-    missing glyphs under Script=Arabic. Wrap those in \\en{…} (see cls).
+    Body font is Noto Nastaliq Urdu — it has almost no Latin glyphs.
+    Anything left as bare ASCII (SI, GPS, 3.56E9, Halliday, …) becomes □.
+    Wrap those islands in \\en{…} (Noto Sans via polyglossia).
+
+    Tables/math/commands are protected first so ``&`` stays inside
+    longtable/tabular (otherwise XeLaTeX: Misplaced alignment tab).
     """
     import re
 
     # Pandoc ``…'' / ''…`` quotes are ASCII; Nastaliq has no those glyphs.
     tex = re.sub(r"''([^`\n]+)``", r"”\1“", tex)
     tex = re.sub(r"``([^'\n]+)''", r"“\1”", tex)
+
+    # Em/en dashes often missing from Nastaliq → LTR hyphen.
+    tex = tex.replace("—", r"\en{--}")
+    tex = tex.replace("–", r"\en{-}")
 
     # (english phrase) -> \en{(english phrase)}
     def wrap_paren(m):
@@ -49,14 +57,13 @@ def fix_pdf_latex(tex):
         wrap_paren,
         tex,
     )
-    # Latin \text{…} in math → \mathrm{…} (Noto Sans via unicode-math)
+    # Latin \text{…} in math → \mathrm{…}
     tex = re.sub(
         r"\\text\{([A-Za-z][^}]*)\}",
         r"\\mathrm{\1}",
         tex,
     )
 
-    # Captions + \(…\) confuse bidi (\endL/\endR). Use \hbox{$…$} instead.
     def fix_caption(m):
         body = m.group(1)
         body = re.sub(r"\\\((.+?)\\\)", r"\\hbox{$\1$}", body)
@@ -68,6 +75,48 @@ def fix_pdf_latex(tex):
         tex,
         flags=re.DOTALL,
     )
+
+    protected = []
+
+    def _protect(m):
+        protected.append(m.group(0))
+        # One PUA char encodes the index — no digits/letters for the wrapper to eat.
+        idx = len(protected) - 1
+        return "\uE000%s\uE001" % chr(0xE100 + idx)
+
+    # Whole environments first (column specs may contain @, &, nested braces).
+    for env in ("longtable", "tabular", "tabular*", "table", "figure"):
+        tex = re.sub(
+            r"\\begin\{%s\}.*?\\end\{%s\}" % (re.escape(env), re.escape(env)),
+            _protect,
+            tex,
+            flags=re.DOTALL,
+        )
+
+    # Math and already-wrapped islands.
+    for pat in (
+        r"\$\$[\s\S]*?\$\$",
+        r"\$[^$\n]+\$",
+        r"\\\([\s\S]*?\\\)",
+        r"\\\[[\s\S]*?\\\]",
+        r"\\en\{[^{}]*\}",
+        r"\\(?:mathrm|mathbf|mathit|mathsf|hbox|text|textbf|textit|texttt|textsf)\{[^{}]*\}",
+        r"\\(?:hypertarget|hyperlink|label|includegraphics|url|href|color|textcolor)\{[^{}]*\}(?:\{[^{}]*\})*",
+        r"\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^{}]*\})*",
+    ):
+        tex = re.sub(pat, _protect, tex)
+
+    def _wrap_latin(m):
+        return r"\en{%s}" % m.group(0)
+
+    tex = re.sub(
+        r"[A-Za-z][A-Za-z0-9./+\-]*|(?<![0-9.])[0-9]+(?:\.[0-9]+)?",
+        _wrap_latin,
+        tex,
+    )
+
+    for i in range(len(protected) - 1, -1, -1):
+        tex = tex.replace("\uE000%s\uE001" % chr(0xE100 + i), protected[i])
     return tex
 
 

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title$</title>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans:wght@400;700&display=swap">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer
+  src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root {
+    --fg: #1a1a1a;
+    --sec: #1e5a8c;
+    --rule: #cd9623;
+    --bg: #fff;
+    --toc-bg: #f7f9fb;
+    --toc-w: 16.5rem;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Noto Nastaliq Urdu", serif;
+    font-size: 1.15rem; line-height: 2.0;
+    color: var(--fg); background: var(--bg);
+    margin: 0;
+  }
+
+  /* Desktop: two panes — TOC on the right (RTL: first flex child) */
+  .layout {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 100vh;
+  }
+  .toc-pane {
+    flex: 0 0 var(--toc-w);
+    width: var(--toc-w);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--toc-bg);
+    border-inline-start: 1px solid #e2e8ef;
+    padding: 1.25rem 1rem 2rem;
+    box-sizing: border-box;
+  }
+  .content-pane {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-y: auto;
+    height: 100vh;
+    padding: 1.2rem 1.4rem 4rem;
+    box-sizing: border-box;
+  }
+  .content-inner {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  .book-open {
+    text-align: center;
+    margin: 1.5rem 0 2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .book-open .book-title {
+    font-size: 2.2rem; font-weight: 700; color: var(--sec);
+    margin: 0; line-height: 1.5;
+  }
+  .book-open .book-title-en {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.05rem; color: #555; margin: .6rem 0 0;
+    direction: ltr; unicode-bidi: isolate;
+  }
+  .book-open .book-meta {
+    font-size: .95rem; color: #666; margin-top: .8rem;
+  }
+
+  .toc { margin: 0; padding: 0; }
+  .toc h2 {
+    color: var(--sec); font-size: 1.15rem; margin: 0 0 1rem;
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .toc li { margin: 0; }
+  .toc a {
+    display: block;
+    color: var(--sec);
+    text-decoration: none;
+    padding: .45rem .55rem;
+    border-radius: 4px;
+    line-height: 1.7;
+  }
+  .toc a:hover { background: #e8eef4; }
+  .toc a.active {
+    background: #e0ebf5;
+    font-weight: 700;
+  }
+  .toc .toc-num {
+    font-family: "Noto Sans", sans-serif;
+    margin-left: .35em;
+  }
+
+  .chapter {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1.5px solid var(--rule);
+  }
+  .chapter-open {
+    text-align: center;
+    margin: 1.2rem 0 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .chapter-open .chap-label {
+    font-size: 1.05rem; font-weight: 700; color: var(--sec);
+  }
+  .chapter-open .chap-label .chap-num {
+    font-family: "Noto Sans", sans-serif;
+  }
+  .chapter-open .chapter-title {
+    font-size: 1.85rem; margin: .55rem 0 0;
+    font-weight: 700; color: var(--sec); line-height: 1.5;
+  }
+  .chapter-body { counter-reset: sec; }
+  .chapter-body h1 {
+    color: var(--sec); line-height: 1.6; font-weight: 700;
+    font-size: 1.35rem; border-bottom: 2px solid var(--rule);
+    padding-bottom: .3rem; margin-top: 2rem;
+    counter-increment: sec;
+  }
+  .chapter-body h1::before {
+    font-family: "Noto Sans", sans-serif;
+    margin-left: .35em;
+  }
+$chapter-counters$
+  .chapter-body h1.unnumbered { counter-increment: none; border-bottom-color: #ddd; }
+  .chapter-body h1.unnumbered::before { content: none; }
+  h2 { color: var(--sec); font-size: 1.15rem; margin-top: 1.6rem;
+       line-height: 1.6; font-weight: 700; }
+  h3 { color: var(--sec); font-size: 1.05rem; font-weight: 700; }
+  strong { font-weight: 700; color: #000; }
+  .katex, code { direction: ltr; unicode-bidi: isolate; }
+  figure { margin: 1.6rem 0; text-align: center; }
+  figure img {
+    display: block; width: 100%; max-width: 100%;
+    height: auto; margin-inline: auto;
+  }
+  figcaption { color: var(--sec); font-size: .95rem;
+               margin-top: .5rem; line-height: 1.7; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem 0; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+
+  /* Mobile: single column (TOC above content, as before) */
+  @media (max-width: 800px) {
+    .layout {
+      display: block;
+      min-height: 0;
+    }
+    .toc-pane {
+      position: static;
+      width: auto;
+      height: auto;
+      border-inline-start: none;
+      border-bottom: 1px solid #e2e8ef;
+      padding: 1rem 1rem 1.2rem;
+    }
+    .content-pane {
+      height: auto;
+      overflow: visible;
+      padding: 1.2rem 1rem 4rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="toc-pane" id="toc-pane" aria-label="فہرست">
+$toc$
+  </aside>
+  <div class="content-pane" id="content-pane">
+    <div class="content-inner">
+$header$
+$body$
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof renderMathInElement === "function") {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false},
+        {left: "\\[", right: "\\]", display: true},
+        {left: "\\(", right: "\\)", display: false}
+      ],
+      throwOnError: false
+    });
+  }
+
+  var content = document.getElementById("content-pane");
+  var links = Array.prototype.slice.call(
+    document.querySelectorAll(".toc a[href^='#']")
+  );
+  var sections = links.map(function (a) {
+    return document.getElementById(a.getAttribute("href").slice(1));
+  }).filter(Boolean);
+
+  function isDesktop() {
+    return window.matchMedia("(min-width: 801px)").matches;
+  }
+
+  function scrollTargetTop(el) {
+    if (!content || !isDesktop()) {
+      return el.getBoundingClientRect().top + window.scrollY - 12;
+    }
+    return el.getBoundingClientRect().top
+      - content.getBoundingClientRect().top
+      + content.scrollTop
+      - 12;
+  }
+
+  links.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var el = document.getElementById(a.getAttribute("href").slice(1));
+      if (!el) return;
+      if (!isDesktop() || !content) return;
+      e.preventDefault();
+      content.scrollTo({ top: scrollTargetTop(el), behavior: "smooth" });
+      history.replaceState(null, "", a.getAttribute("href"));
+    });
+  });
+
+  function setActive() {
+    if (!sections.length) return;
+    var top = (content && isDesktop())
+      ? content.scrollTop + 80
+      : window.scrollY + 80;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      var y = (content && isDesktop())
+        ? scrollTargetTop(sections[i])
+        : sections[i].getBoundingClientRect().top + window.scrollY - 12;
+      if (y <= top) current = sections[i];
+    }
+    links.forEach(function (a) {
+      a.classList.toggle(
+        "active",
+        a.getAttribute("href") === "#" + current.id
+      );
+    });
+  }
+
+  function bindScroll() {
+    if (content && isDesktop()) {
+      content.addEventListener("scroll", setActive, {passive: true});
+    } else {
+      window.addEventListener("scroll", setActive, {passive: true});
+    }
+  }
+  bindScroll();
+  window.addEventListener("resize", setActive);
+  setActive();
+});
+</script>
+</body>
+</html>

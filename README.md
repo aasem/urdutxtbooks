@@ -64,9 +64,18 @@ Two different Docker commands:
 | Command | What it does | When to run |
 |---------|--------------|-------------|
 | `docker build -t urdu-pipeline .` | Builds the **image** (TeX, Pandoc, fonts, Python) | **Once** the first time; again **only** if `Dockerfile` or toolchain deps change |
-| `docker run … ./build.sh content/chNN` | Compiles a **chapter** into HTML/PDF | **Every time** you want fresh output after content/PR merges |
+| `docker run … ./build.sh …` | Compiles chapter(s) or the whole book | **Every time** you want fresh HTML/PDF after content changes |
 
 Editing Markdown or figures does **not** require `docker build` again — only `docker run`.
+
+### Chapter vs whole book
+
+| Target | Command | Output |
+|--------|---------|--------|
+| **One chapter** | `./build.sh content/ch01` | `content/ch01/output/` — that chapter only |
+| **Whole book** | `./build.sh book` (or `./build.sh`) | `output/` — **one** HTML + **one** PDF, all chapters, shared page numbers, TOC |
+
+Whole-book PDF uses continuous page numbers and chapter numbers from each `chapter.yaml`. Whole-book HTML is a single phone-first page with a فہرست (TOC).
 
 ### Setup
 
@@ -84,51 +93,37 @@ docker build -t urdu-pipeline .
 
 First build can take several minutes. After that, reuse the `urdu-pipeline` image until the Dockerfile changes.
 
-### 2) Compile a chapter (common)
+### 2) Compile (common)
 
 **Windows (PowerShell)** — Docker Desktop:
 
 ```powershell
+# whole book → output/index.html + output/print.pdf
+docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh book
+
+# one chapter → content/ch01/output/
 docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh content/ch01
-docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh content/ch10
 ```
 
 **Linux / macOS** (bash):
 
 ```bash
+docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh book
 docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh content/ch01
-docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh content/ch10
 ```
 
-**All chapters**
+Generated folders (`output/`, `content/*/output/`) are gitignored — publish from CI or a release; do not ask translators to commit them.
 
-PowerShell:
-
-```powershell
-foreach ($d in Get-ChildItem content -Directory -Filter "ch*") {
-  docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh ("content/" + $d.Name)
-}
-```
-
-Linux / macOS:
-
-```bash
-for d in content/ch*; do
-  docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh "$d"
-done
-```
-
-Outputs land in `content/chNN/output/` (`index.html`, `print.pdf`). Those folders are gitignored — publish from CI or a release; do not ask translators to commit them.
-
-Pipeline inside the container: `scripts/build_figures.py` (TikZ → SVG), then `scripts/render.py` (sections → HTML + PDF).
+Pipeline: `scripts/build_figures.py` (TikZ → SVG), then `scripts/render.py` (chapter) or `scripts/render_book.py` (full book).
 
 ## Repo map
 
 ```
 book.yaml          # this book’s title / course / language
 content/           # ← translators work here
+output/            # whole-book build (admins; gitignored)
 scripts/           # build toolchain (maintainers)
-build.sh           # ./build.sh content/chNN
+build.sh           # ./build.sh book | ./build.sh content/chNN
 Dockerfile         # reproducible TeX + Pandoc + fonts
 ```
 

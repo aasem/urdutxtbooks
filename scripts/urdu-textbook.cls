@@ -13,6 +13,9 @@
 \RequirePackage{titlesec}
 \RequirePackage{fancyhdr}
 \RequirePackage{caption}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{array}
 \RequirePackage[hidelinks]{hyperref}
 
 \geometry{a4paper, margin=2.2cm, top=2.4cm, bottom=2.6cm}
