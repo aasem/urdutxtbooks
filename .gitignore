@@ -1,0 +1,20 @@
+# Byte-compiled / local junk
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+*~
+
+# TeX aux if someone compiles outside Docker
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Generated chapter builds (admins regenerate; do not PR these)
+content/*/output/
+
+# Local scratch / old monolithic TeX — never part of the book
+temp/
+/output/

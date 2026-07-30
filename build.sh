@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # build.sh — run the whole pipeline for one chapter.
-# Usage:  ./build.sh content/ch10
+# Usage:  ./build.sh content/ch01
+#         ./build.sh content/ch10
 set -euo pipefail
 
-CHAPTER="${1:-content/ch10}"
+CHAPTER="${1:?usage: ./build.sh content/chNN}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 
 echo "==> [1/2] building figures in ${CHAPTER}/figures"
