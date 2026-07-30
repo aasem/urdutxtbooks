@@ -110,3 +110,4 @@ $$c = 299\,792\,458\ \mathrm{m/s}.$$
 **حل:** ہم دو عاملِ تبدیلی لگاتے ہیں — $1\ \mathrm{km}=1000\ \mathrm{m}$ اور $1\ \mathrm{h}=3600\ \mathrm{s}$:
 
 $$90\,\frac{\mathrm{km}}{\mathrm{h}} = 90\,\frac{\mathrm{km}}{\mathrm{h}}\times\frac{1000\ \mathrm{m}}{1\ \mathrm{km}}\times\frac{1\ \mathrm{h}}{3600\ \mathrm{s}} = 25\ \mathrm{m/s}.$$
+شکر خورے کو
