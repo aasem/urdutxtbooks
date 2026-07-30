@@ -1,7 +1,10 @@
-# University Physics (Urdu)
+# طبیعیات — University Physics (Urdu)
 
-One **book** = one GitHub repo. Translators edit Markdown under `content/`.
+Urdu translation of selected chapters from **Halliday / Resnick / Walker**, course **PHYS-101**.
+This repo is **one book only**. Translators edit Markdown under `content/`.
 Admins compile HTML/PDF with Docker. You do **not** need TeX or Docker to contribute.
+
+Book metadata lives in `book.yaml` (`title`, `title_en`, `course`, `source`).
 
 ## Who does what
 
@@ -13,8 +16,8 @@ Admins compile HTML/PDF with Docker. You do **not** need TeX or Docker to contri
 ## For translators
 
 ```bash
-git clone https://github.com/<org>/<this-book>.git
-cd <this-book>
+git clone https://github.com/aasem/urdutxtbooks.git
+cd urdutxtbooks
 ```
 
 Edit only under `content/`. Typical PR scopes:
@@ -56,21 +59,68 @@ Open a PR against `main`. Keep the diff to the chapter/section you own.
 
 ## For admins — compile with Docker
 
+Two different Docker commands:
+
+| Command | What it does | When to run |
+|---------|--------------|-------------|
+| `docker build -t urdu-pipeline .` | Builds the **image** (TeX, Pandoc, fonts, Python) | **Once** the first time; again **only** if `Dockerfile` or toolchain deps change |
+| `docker run … ./build.sh content/chNN` | Compiles a **chapter** into HTML/PDF | **Every time** you want fresh output after content/PR merges |
+
+Editing Markdown or figures does **not** require `docker build` again — only `docker run`.
+
+### Setup
+
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or Docker Engine (Linux).
+2. On Windows: start **Docker Desktop** and wait until it shows running.
+3. Open a terminal in the **repo root** (folder that contains `Dockerfile`).
+
+### 1) Build the image (rare)
+
+**Windows (PowerShell)** and **Linux / macOS**:
+
 ```bash
 docker build -t urdu-pipeline .
+```
 
-# one chapter
+First build can take several minutes. After that, reuse the `urdu-pipeline` image until the Dockerfile changes.
+
+### 2) Compile a chapter (common)
+
+**Windows (PowerShell)** — Docker Desktop:
+
+```powershell
 docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh content/ch01
+docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh content/ch10
+```
 
-# all chapters (bash)
+**Linux / macOS** (bash):
+
+```bash
+docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh content/ch01
+docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh content/ch10
+```
+
+**All chapters**
+
+PowerShell:
+
+```powershell
+foreach ($d in Get-ChildItem content -Directory -Filter "ch*") {
+  docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh ("content/" + $d.Name)
+}
+```
+
+Linux / macOS:
+
+```bash
 for d in content/ch*; do
-  docker run --rm -v "${PWD}:/work" urdu-pipeline ./build.sh "$d"
+  docker run --rm -v "$PWD:/work" urdu-pipeline ./build.sh "$d"
 done
 ```
 
-On PowerShell, use `${PWD}` the same way. Outputs appear in `content/chNN/output/` (`index.html`, `print.pdf`). Those folders are gitignored — publish them from CI or a release, do not ask translators to commit them.
+Outputs land in `content/chNN/output/` (`index.html`, `print.pdf`). Those folders are gitignored — publish from CI or a release; do not ask translators to commit them.
 
-Pipeline: `scripts/build_figures.py` (TikZ → SVG) then `scripts/render.py` (sections → HTML + PDF).
+Pipeline inside the container: `scripts/build_figures.py` (TikZ → SVG), then `scripts/render.py` (sections → HTML + PDF).
 
 ## Repo map
 
@@ -84,7 +134,7 @@ Dockerfile         # reproducible TeX + Pandoc + fonts
 
 ## More books
 
-Use a **separate GitHub repo per book** (recommended). Clone this repo as a template; keep the same `content/chNN` + `scripts` + `Dockerfile` shape. Shared pipeline updates can later move into a template repo or a small shared package — duplication is fine until then.
+Use a **separate GitHub repo per book**. Clone **urdutxtbooks** (طبیعیات) as a template; keep the same `content/chNN` + `scripts` + `Dockerfile` shape. Shared pipeline updates can later move into a template repo or a small shared package — duplication is fine until then.
 
 ## Notes
 
